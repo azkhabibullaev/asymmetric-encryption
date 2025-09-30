@@ -1,5 +1,6 @@
 package com.example.demo.user;
 
+import com.example.demo.auth.request.RegistrationRequest;
 import com.example.demo.user.request.ProfileUpdateRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -19,4 +20,18 @@ public class UserMapper {
         }
     }
 
+    public User toUser(final RegistrationRequest request) {
+        return User.builder()
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
+                .email(request.getEmail())
+                .phoneNumber(request.getPhoneNumber())
+                .password(request.getPassword())
+                .enabled(true)
+                .locked(false)
+                .credentialsExpired(false)
+                .emailVerified(false)
+                .phoneVerified(false)
+                .build();
+    }
 }
