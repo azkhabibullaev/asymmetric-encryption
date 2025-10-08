@@ -1,6 +1,7 @@
 package com.example.demo.exceptions;
 
 import lombok.Getter;
+import org.springframework.boot.web.error.Error;
 import org.springframework.http.HttpStatus;
 
 @Getter
@@ -15,6 +16,10 @@ public enum ErrorCode {
     EMAIL_ALREADY_EXISTS("EMAIL_ALREADY_EXISTS", "Email already exists", HttpStatus.BAD_REQUEST),
     PHONE_ALREADY_EXISTS("PHONE_ALREADY_EXISTS", "Phone number already exists", HttpStatus.BAD_REQUEST),
     PASSWORD_MISMATCH("PASSWORD_MISMATCH", "Passwords do not match", HttpStatus.BAD_REQUEST),
+    ERROR_USER_DISABLED("ERROR_USER_DISABLED", "User is disabled", HttpStatus.UNAUTHORIZED),
+    BAD_CREDENTIALS("BAD_CREDENTIALS", "Username and / or password is incorrect", HttpStatus.UNAUTHORIZED),
+    USERNAME_NOT_FOUND("USERNAME_NOT_FOUND", "Username not found", HttpStatus.NOT_FOUND),
+    INTERNAL_EXCEPTION("INTERNAL_EXCEPTION", "Internal server error", HttpStatus.INTERNAL_SERVER_ERROR),
     ;
 
     private final String code;

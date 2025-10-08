@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -27,8 +26,8 @@ public class JwtService {
     private final PublicKey publicKey;
 
     public JwtService() throws Exception {
-        this.privateKey = KeyUtils.loadPrivateKey("/keys/local-only/private_key.pem");
-        this.publicKey = KeyUtils.loadPublicKey("/keys/local-only/public_key.pem");
+        this.privateKey = KeyUtils.loadPrivateKey("keys/local-only/private_key.pem");
+        this.publicKey = KeyUtils.loadPublicKey("keys/local-only/public_key.pem");
     }
 
     public String generateAccessToken(final String username) {

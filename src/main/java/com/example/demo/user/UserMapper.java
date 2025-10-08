@@ -2,11 +2,16 @@ package com.example.demo.user;
 
 import com.example.demo.auth.request.RegistrationRequest;
 import com.example.demo.user.request.ProfileUpdateRequest;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class UserMapper {
+
+    private final PasswordEncoder passwordEncoder;
 
     public void mergeUserInfo(final User user, final ProfileUpdateRequest request) {
         if (StringUtils.isNotBlank(request.getFirstName()) && !user.getFirstName().equals(request.getFirstName())) {
@@ -24,9 +29,10 @@ public class UserMapper {
         return User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
+                .username(request.getUsername())
                 .email(request.getEmail())
                 .phoneNumber(request.getPhoneNumber())
-                .password(request.getPassword())
+                .password(this.passwordEncoder.encode(request.getPassword()))
                 .enabled(true)
                 .locked(false)
                 .credentialsExpired(false)

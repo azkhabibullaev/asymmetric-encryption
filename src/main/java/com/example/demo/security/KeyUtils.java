@@ -36,7 +36,7 @@ public class KeyUtils {
     }
 
     private static String readKeyFromResource(final String pemPath) throws Exception {
-        try (final InputStream inputStream = KeyUtils.class.getResourceAsStream(pemPath)) {
+        try (final InputStream inputStream = KeyUtils.class.getClassLoader().getResourceAsStream(pemPath)) {
             if (inputStream == null) {
                 throw new IllegalArgumentException("Could not find key file: " + pemPath);
             }
