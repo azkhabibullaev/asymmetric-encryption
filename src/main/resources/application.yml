@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: demo-app
+  config:
+    import: optional:file:.env[.properties]
+  profiles:
+    active: dev
+
+app:
+  security:
+    jwt:
+      access-token-expiration: 900000
+      refresh-token-expiration: 86400000
+    disposable-email: 10minutemail,20minutemail,33mail,5ymail,anonbox,guerrillamail,mailinator,maildrop,mailnesia,moakt,my10minutemail,throwawaymail,trashmail,temp-mail,tempmail,truemail,yopmail
